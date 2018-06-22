@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/ProfutW/movie-trailer#readme",
   "dependencies": {
-    "koa": "^2.5.1"
+    "ejs": "^2.6.1",
+    "koa": "^2.5.1",
+    "pug": "^2.0.3"
   }
 }
