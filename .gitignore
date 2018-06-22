@@ -1,9 +1,6 @@
 # dependencies
 node_modules
 
-# style
-.eslintrc.json
-
 # logs
 npm-debug.log
 
