@@ -2,7 +2,7 @@ const cdp = require('child_process');
 const {resolve} = require('path');
 
 (async () => {
-    const script = resolve(__dirname, '../crawler/trailer-list.js');
+    const script = resolve(__dirname, '../crawler/video.js');
     const subprocess = cdp.fork(script, []);
     let invoked = false;
 
@@ -20,7 +20,6 @@ const {resolve} = require('path');
     });
 
     subprocess.on('message', data => {
-        const result = data.result;
-        console.log(result);
+        console.log(data);
     });
 })();
