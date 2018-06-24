@@ -14,7 +14,7 @@ const {resolve} = require('path');
 
     subprocess.on('exit', code => {
         if (invoked) return;
-        invoked = false;
+        invoked = true;
         const err = code === 0 ? null : new Error('exit code ' + code);
         if (err) console.error(err);
     });
