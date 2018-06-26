@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-const url = 'https://movie.douban.com/tag/#/?sort=S&range=0,10&tags=%E6%82%AC%E7%96%91';
+const url = 'https://movie.douban.com/tag/#/?sort=R&range=0,10&tags=';
 
 const sleep = ms => new Promise(resolve => {
     setTimeout(resolve, ms);
