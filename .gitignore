@@ -7,6 +7,9 @@ npm-debug.log
 #config
 config
 
+#resources
+server/public/resources
+
 # Nuxt generate
 dist
 

@@ -97,7 +97,7 @@ block content
                 .row
                     .col-md-6
                         .card
-                            img.card-img-top(src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike180%2C5%2C5%2C180%2C60/sign=c29e54abe524b899ca31716a0f6f76f0/9922720e0cf3d7ca916d41ddfe1fbe096a63a986.jpg", alt="超人总动员2", data-video="http://vt1.doubanio.com/201806262009/434548b3d36ecb294c9280a4240d1720/view/movie/M/402320336.mp4")
+                            img.card-img-top(src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike180%2C5%2C5%2C180%2C60/sign=c29e54abe524b899ca31716a0f6f76f0/9922720e0cf3d7ca916d41ddfe1fbe096a63a986.jpg", alt="超人总动员2", data-video="resources/402320336.mp4")
                             .card-body
                                 h4.card-title 电影标题
                                 p.card-desc 电影描述
@@ -129,7 +129,7 @@ block content
                             .card-footer
                                 small.text-muted 1天前更新
 
-    #myModal.model.fade.bd-example-modal-lg(tabindex='-1', role='dialog',
+    #myModal.modal.fade.bd-example-modal-lg(tabindex='-1', role='dialog',
     aria-labelledby='myLargeModalLabel', aria-hidden='true')
         .modal-dialog.modal-lg
             #videoModal.modal-content
@@ -140,7 +140,7 @@ block content
 
         $(document).ready(function () {
             $('#myModal').on('hidden.bs.modal', function (e) {
-                if (play && player.pause) player.pause();
+                if (player && player.pause) player.pause();
             });
 
             $('.card-img-top').click(function (e) {
@@ -150,7 +150,7 @@ block content
                 $('#myModal').modal('show');
 
                 if (!player) {
-                    play = new DPlayer({
+                    player = new DPlayer({
                         container: document.getElementById('videoModal'),
                         screenshot: true,
                         video: {
@@ -160,7 +160,7 @@ block content
                         },
                     });
                 } else {
-                    if (play.video.currentSrc !== video) {
+                    if (player.video.currentSrc !== video) {
                         player.switchVideo({
                             url: video,
                             pic: image,
