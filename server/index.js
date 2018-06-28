@@ -1,6 +1,12 @@
 const Koa = require('koa');
 const views = require('koa-views');
 const static = require('koa-static');
+const mongodb = require('./database/init');
+
+(async () => {
+    await mongodb.connect();
+})();
+
 const {
     resolve
 } = require('path');
