@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 const db = 'mongodb://localhost/trailer';
+const glob = require('glob');
+const {resolve} = require('path');
+
 mongoose.Promise = global.Promise;
+
+exports.initSchemas = () => {
+    glob.sync(resolve(__dirname, './schema', '**/*.js')).forEach(require);
+};
 
 exports.connect = () => {
     let MAX_CONNECT = 0;
@@ -27,12 +34,6 @@ exports.connect = () => {
             reject(err);
         });
         mongoose.connection.once('open', () => {
-            const Dog = mongoose.model('Dog', {name: String});
-            const dog = new Dog({name: 'Momo'});
-            dog.save().then(() => {
-                console.log('wang');
-            });
-
             resolve();
             console.log('MongoDB Connected Successfully!');
         });

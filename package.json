@@ -23,7 +23,9 @@
   "homepage": "https://github.com/ProfutW/movie-trailer#readme",
   "dependencies": {
     "ali-oss": "^5.3.0",
+    "bcrypt": "^2.0.1",
     "ejs": "^2.6.1",
+    "glob": "^7.1.2",
     "koa": "^2.5.1",
     "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",

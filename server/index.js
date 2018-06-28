@@ -1,10 +1,19 @@
 const Koa = require('koa');
 const views = require('koa-views');
 const static = require('koa-static');
-const mongodb = require('./database/init');
+const mongoose = require('mongoose');
+const {connect, initSchemas} = require('./database/init');
 
 (async () => {
-    await mongodb.connect();
+    try {
+        await connect();
+        initSchemas();
+        const Movie = mongoose.model('Movie');
+        const movies = await Movie.find({});
+        console.log(movies);
+    } catch (e) {
+        console.error(e);
+    }
 })();
 
 const {
