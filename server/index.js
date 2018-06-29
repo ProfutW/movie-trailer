@@ -5,15 +5,9 @@ const mongoose = require('mongoose');
 const {connect, initSchemas} = require('./database/init');
 
 (async () => {
-    try {
-        await connect();
-        initSchemas();
-        const Movie = mongoose.model('Movie');
-        const movies = await Movie.find({});
-        console.log(movies);
-    } catch (e) {
-        console.error(e);
-    }
+    await connect();
+    initSchemas();
+    require('./tasks/movie');
 })();
 
 const {
