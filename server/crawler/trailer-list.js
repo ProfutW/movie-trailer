@@ -19,12 +19,8 @@ const sleep = ms => new Promise(resolve => {
         waitUntil: 'networkidle2'
     });
 
-    await sleep(3000);
-
-    await page.waitForSelector('.more');
-
-    for (let i = 0; i < 1; i++) {
-        await sleep(3000);
+    for (let i = 0; i < 3; i++) {
+        await page.waitForSelector('.more');
         await page.click('.more');
     }
 

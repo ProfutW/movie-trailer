@@ -66,7 +66,7 @@ userSchema.pre('save', function(next) {
 });
 
 userSchema.methods = {
-    comparePassword: function (_password, password) {
+    comparePassword: (_password, password) => {
         return new Promise((resolve, reject) => {
             bcrypt.compare(_password, password, (err, isMatch) => {
                 if (err) return reject(err);
@@ -75,7 +75,7 @@ userSchema.methods = {
         });
     },
 
-    incLoginAttempts: function(user) {
+    incLoginAttempts: user => {
         return new Promise((resolve, reject) => {
             if (this.lockUntil && this.lockUntil < Date.now()) {
                 this.update({

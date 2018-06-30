@@ -7,7 +7,7 @@ const {connect, initSchemas} = require('./database/init');
 (async () => {
     await connect();
     initSchemas();
-    require('./tasks/movie');
+    require('./tasks/api');
 })();
 
 const {

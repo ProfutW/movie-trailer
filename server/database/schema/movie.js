@@ -1,29 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const {Mixed, ObjectId} = Schema.Types;
+const {ObjectId} = Schema.Types;
 
 const movieSchema = new Schema({
     doubanId: {
         unique: true,
         type: String,
     },
-    category: {
+    category: [{
         type: ObjectId,
         ref: 'Category'
-    },
+    }],
     rate: Number,
     title: String,
+    rawTitle: String,
     summary: String,
-    video: String,
+    trailer: String,
     poster: String,
     cover: String,
-
-    rawTitle: String,
     movieTypes: [String],
-    pubdate: Mixed,
     year: Number,
-
-    tags: [String],
+    countries: [String],
 
     meta: {
         createdAt: {
