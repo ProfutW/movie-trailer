@@ -17,15 +17,12 @@ async function fetchMovie(item) {
 
 (async () => {
     const movies = await Movie.find({
-        $or: [
-            { summary: { $exists: false } },
-            { summary: null },
-            { summary: '' },
-            { title: '' }
-        ]
+        summary: null
     });
 
-    for(let i = 0, len = movies.length; i < len; i++) {
+    if (!movies || movies.length === 0) return require('./trailer');
+
+    for (let i = 0, len = movies.length; i < len; i++) {
         let movie = movies[i];
         let movieDate = await fetchMovie(movie);
         movie.summary = movieDate.summary || '';
@@ -39,7 +36,7 @@ async function fetchMovie(item) {
 
             for (let j = 0, len = movie.movieTypes.length; j < len; j++) {
                 let item = movie.movieTypes[j];
-                
+
                 let cate = await Category.findOne({
                     name: item
                 });
@@ -58,15 +55,13 @@ async function fetchMovie(item) {
                 }
                 await cate.save();
 
-                if (!movie.category) {
+                if (!(cate._id in movie.category)) {
                     movie.category.push(cate._id);
-                } else {
-                    if (movie.category.includes(cate._id)) {
-                        movie.category.push(cate._id);
-                    }
                 }
             }
         }
         await movie.save();
     }
+
+    return require('./trailer');
 })();

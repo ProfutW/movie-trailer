@@ -18,7 +18,11 @@ const Movie = mongoose.model('Movie');
         if (invoked) return;
         invoked = true;
         const err = code === 0 ? null : new Error('exit code ' + code);
-        if (err) console.error(err);
+        if (!err) {
+            return require('./api');
+        } else {
+            console.error(err);
+        }
     });
 
     subprocess.on('message', data => {

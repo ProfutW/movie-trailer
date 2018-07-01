@@ -7,7 +7,7 @@ const sleep = ms => new Promise(resolve => {
 });
 
 (async () => {
-    console.log('Start visit the target page.');
+    console.log('Start crawl the trailer-list.');
 
     const browser = await puppeteer.launch({
         args: ['--no-sandbox'],

@@ -1,3 +1,4 @@
+//This task is designed for uploading static resources that are crawled from other websites to cloud so that you can enjoy the cloud service and cdn.
 const OSS = require('ali-oss');
 const nanoid = require('nanoid');
 const aliConfig = require('../config/default').ali;

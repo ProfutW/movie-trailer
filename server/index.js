@@ -1,13 +1,12 @@
 const Koa = require('koa');
 const views = require('koa-views');
 const static = require('koa-static');
-const mongoose = require('mongoose');
 const {connect, initSchemas} = require('./database/init');
 
 (async () => {
     await connect();
     initSchemas();
-    require('./tasks/api');
+    require('./tasks/movie');
 })();
 
 const {
