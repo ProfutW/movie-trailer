@@ -1,5 +1,7 @@
 const cdp = require('child_process');
-const {resolve} = require('path');
+const {
+    resolve
+} = require('path');
 const mongoose = require('mongoose');
 const Movie = mongoose.model('Movie');
 
@@ -18,23 +20,24 @@ const Movie = mongoose.model('Movie');
         if (invoked) return;
         invoked = true;
         const err = code === 0 ? null : new Error('exit code ' + code);
-        if (!err) {
-            return require('./api');
-        } else {
+        if (err) {
             console.error(err);
         }
     });
 
-    subprocess.on('message', data => {
+    subprocess.on('message', async data => {
         const result = data.result;
-        result.forEach(async item => {
-            let movie = await Movie.findOne({
-                doubanId: item.doubanId
-            });
-            if (!movie) {
-                movie = new Movie(item);
-                await movie.save();
-            }
-        });
+        await Promise.all(result.map(item => {
+            return (async () => {
+                let movie = await Movie.findOne({
+                    doubanId: item.doubanId
+                });
+                if (!movie) {
+                    movie = new Movie(item);
+                    await movie.save();
+                }
+            })();
+        }));
+        return require('./api');
     });
 })();
